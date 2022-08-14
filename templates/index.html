@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+
+<head>
+    <title>Estação de Controle de Temperatura</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+
+    <!-- <link rel="icon" type="image/x-icon" href="icone.png"> -->
+</head>
+
+
+<body>
+
+    <h1>Estação de Controle de Temperatura</h1>
+
+    <div class="principal">
+
+        <div class="column">
+            <section class="container">
+                <div class="item-titulo"><h1>Dados</h1></div>
+                <div class="aquire">
+                    <a href="/dhtpin/get">
+                        <button class="botao2">
+                            <span class="text-aquire">Ler Sensor</span>
+                        </button>
+                    </a>
+                </div>
+                <div class="row">
+                    
+                    <div class="item-temperatura">
+                        <h2>Temperatura</h2>
+                        <h1 id="temperatura">{{ temperature }}</h1>
+                        <h2>°C</h2>
+                    </div>
+
+                    <div class="vertical-separator"></div>
+
+                    <div class="item-umidade">
+                        <h2>Umidade</h2>
+                        <h1 id="umidade">{{ humidity }}</h1>
+                        <h2>%</h2>
+                    </div>
+
+                </div>
+                <div class="space"></div>
+                <div class="separator"></div>
+                <div class="item-titulo"><h1>Ventilação</h1></div>
+                <div class="row">
+                    <div class='divBotao'>
+                        <a href="/rele/on">
+                            <button id="on" class='bnn' >
+                                ON
+                            </button>
+                        </a>
+                    </div>
+
+                    <div class='divBotao'>
+                        <a href="/rele/off">
+                            <button id="off" class='bnn' >
+                                OFF
+                            </button>
+                        </a>
+                    </div>
+                   
+
+                </div>
+                <div class="space"></div>
+                
+            </section>
+        </div>
+        
+    </div>
+    
+
+    <script>
+
+    
+    </script>
+</body>
+
+</html>
