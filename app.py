@@ -1,10 +1,16 @@
 from flask import Flask, render_template
-
+import RPi.GPIO as GPIO
 from random import randint
  
 app = Flask(__name__)
 
-state = False
+GPIO.setmode(GPIO.BOARD)
+rele = 16
+sensor = 23
+
+GPIO.setup(rele, GPIO.OUT)
+
+GPIO.output(rele, GPIO.HIGH)
 
 @app.route("/") 
 def main():
@@ -12,17 +18,16 @@ def main():
  
 @app.route("/<pin>/<action>")
 def sensor(pin, action):
-   global state
    temperature = ''
    humidity = ''
 
    if pin == "rele" and action == "on":
-      state = True
-      print("Pin 1 is on")
+      GPIO.output(rele, GPIO.LOW)
+      print('on')
    if pin == "rele" and action == "off":
-      state = False
-      print("Pin 1 is off")
-
+      GPIO.output(rele, GPIO.HIGH)
+      print('off')
+    
 
    temperature = randint(0, 100) 
    humidity =  randint(0, 100)
@@ -35,16 +40,6 @@ def sensor(pin, action):
    return render_template('index.html', **templateData)
 
 
-@app.route("/rele", methods=['GET'])
-def rele():
-   global state
-   if state == False:
-      state = True
-      print("Ligado")
-   else:
-      state = False
-      print("Desligado")
-   return True
 
 if __name__ == "__main__":
    app.run(host='0.0.0.0', port=5000, debug=True)
