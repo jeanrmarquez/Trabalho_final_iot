@@ -4,7 +4,7 @@ from random import randint
 import time
 import serial
 
-comunicacaoSerial = serial.Serial('/dev/ttyUSB0', 9600)
+comunicacaoSerial = serial.Serial('/dev/ttyUSB1', 9600)
 
 app = Flask(__name__)
 
